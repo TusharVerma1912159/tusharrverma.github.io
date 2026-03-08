@@ -1,6 +1,6 @@
 # Hi, I'm Tushar! 👋
 **Master of Cybersecurity @ University of Adelaide**
-*Building secure systems and solving complex IT challenges in Melbourne.*
+*Building secure systems and solving complex IT challenges.*
 
 [LinkedIn](linkedin.com/in/tusharr-verma0001) | [Email](vermatushar4577@gmail.com) | [Download CV](LINK_TO_PDF)
 
@@ -33,4 +33,4 @@ I specialize in **Network Security**, **Cloud Infrastructure (AWS)**, and **Secu
 ## ⚡ Quick Stats
 * **Education:** Master of Cybersecurity (University of Adelaide, 2025).
 * **Experience:** 2+ years in Secure Development & IT Support.
-* **Location:** Glen Waverley, Melbourne (Full Working Rights).
+* **Location:** Australia (Full Working Rights).
