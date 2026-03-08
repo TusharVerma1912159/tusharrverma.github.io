@@ -2,7 +2,7 @@
 **Master of Cybersecurity @ University of Adelaide**
 *Building secure systems and solving complex IT challenges.*
 
-[LinkedIn](linkedin.com/in/tusharr-verma0001) | [Email](vermatushar4577@gmail.com) | [Download CV](LINK_TO_PDF)
+[LinkedIn](https://linkedin.com/in/tusharr-verma0001) | [Email](mailto:vermatushar4577@gmail.com) | [Download CV](LINK_TO_PDF)
 
 ---
 
