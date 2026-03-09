@@ -1,1 +1,20 @@
+title: Tushar Verma | Cybersecurity
+email: vermatushar4577@gmail.com
+description: Master of Cybersecurity Graduate from University of Adelaide.
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: "dark" # Gives that "Cybersecurity" dark-mode feel
 
+# Creative Sidebar Settings
+author:
+  name   : "Tushar Verma"
+  avatar : "https://github.com/identicons/tushar.png" # Placeholder photo
+  bio    : "Cybersecurity Professional & Secure Developer"
+  location: "Melbourne, Australia"
+  links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/tushar-verma0001"
+
+# Plugin to make the theme work
+plugins:
+  - jekyll-remote-theme
