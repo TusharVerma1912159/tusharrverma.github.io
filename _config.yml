@@ -1,53 +1,8 @@
-# --- SITE SETTINGS ---
-title: "Tushar Verma | Cybersecurity Portfolio"
-description: "Master of Cybersecurity Graduate from University of Adelaide. Specialized in Network Security and Cloud Infrastructure."
-url: "https://tusharverma1912159.github.io"
-baseurl: "" # Leave this empty
+# Site Settings
+title: "Tushar Verma | Secure Terminal"
+description: "Master of Cybersecurity | University of Adelaide"
 
-# --- THEME SETTINGS (CREATIVE & PROFESSIONAL) ---
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin: "dark" # "dark" provides a sleek, cybersecurity-focused look.
-
-# --- PLUGINS (REQUIRED TO FIX YOUR ERROR) ---
-# Adding 'jekyll-include-cache' fixes the 'Unknown tag include_cached' error.
+# Hacker Theme Configuration
+remote_theme: pages-themes/hacker@v0.2.0
 plugins:
   - jekyll-remote-theme
-  - jekyll-include-cache
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-# --- AUTHOR SIDEBAR ---
-author:
-  name   : "Tushar Verma"
-  avatar : "https://github.com/identicons/tushar.png" # You can replace this with your photo URL later.
-  bio    : "Cybersecurity Professional & Secure Developer."
-  location: "Melbourne, Australia"
-  links:
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://linkedin.com/in/tushar-verma0001"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:vermatushar4577@gmail.com"
-
-# --- BUILD SETTINGS ---
-markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: ""
-incremental: false
-
-# --- DEFAULTS FOR PAGES ---
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: single
-      author_profile: true
