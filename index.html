@@ -50,13 +50,11 @@
             transition: opacity 0.5s ease-in-out;
         }
         
-        /* Position the 4 screens */
         .top-left { top: 5%; left: 3%; animation: float 5s ease-in-out infinite; }
         .top-right { top: 5%; right: 3%; animation: float-slow 6s ease-in-out infinite; }
         .bottom-left { bottom: 5%; left: 3%; animation: float-slow 7s ease-in-out infinite; }
         .bottom-right { bottom: 5%; right: 3%; animation: float 4s ease-in-out infinite; }
 
-        /* Hide memes on small mobile screens so they don't block text */
         @media (max-width: 800px) { .meme-screen { display: none; } }
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -68,19 +66,13 @@
         .header p { color: #aaa; font-family: monospace; font-size: 1.1em; margin-bottom: 20px; }
         
         .contact-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
-        .contact-links a {
-            color: var(--neon-cyan); text-decoration: none; font-family: monospace; font-size: 1.1em;
-            border: 1px solid var(--neon-cyan); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease; background: rgba(0, 0, 0, 0.5);
-        }
+        .contact-links a { color: var(--neon-cyan); text-decoration: none; font-family: monospace; font-size: 1.1em; border: 1px solid var(--neon-cyan); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease; background: rgba(0, 0, 0, 0.5); }
         .contact-links a:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 15px var(--neon-cyan); }
 
         /* --- PORTFOLIO GRID --- */
         .section-title { color: #fff; font-family: monospace; font-size: 1.5em; border-bottom: 2px dashed var(--neon-cyan); padding-bottom: 10px; margin-bottom: 40px; text-align: center; width: 80%; max-width: 800px; z-index: 10; }
         .dashboard { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; width: 100%; max-width: 1000px; z-index: 10; }
-        .hub-btn {
-            background: var(--panel-bg); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 40px 20px;
-            text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); width: 280px; backdrop-filter: blur(5px);
-        }
+        .hub-btn { background: var(--panel-bg); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); width: 280px; backdrop-filter: blur(5px); }
         .hub-btn:hover { background: rgba(0, 243, 255, 0.15); box-shadow: 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.2); transform: translateY(-5px); }
         .hub-btn i { font-size: 50px; color: var(--neon-cyan); margin-bottom: 20px; text-shadow: 0 0 15px var(--neon-cyan); }
         .hub-btn h2 { color: #fff; font-weight: 400; letter-spacing: 2px; font-size: 1.2em; }
@@ -94,6 +86,7 @@
         .item-card { background: rgba(255,255,255,0.03); border-left: 3px solid var(--neon-cyan); padding: 15px; margin-bottom: 15px; }
         .item-card h4 { color: #fff; margin-bottom: 5px; }
         .item-card p { color: #aaa; font-size: 0.9em; line-height: 1.5; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 50; }
         .overlay.active { display: block; }
     </style>
 </head>
@@ -105,6 +98,9 @@
     <div class="meme-screen bottom-right"><img id="meme4" src="" alt="IT Meme"></div>
 
     <div class="header">
+        <h1>TUSHAR VERMA</h1>
+        <p>MASTER OF CYBERSECURITY // SECURE SYSTEM AUTHORIZED</p>
+        <div class="contact-links">
             <a href="https://linkedin.com/in/tushar-verma0001" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
             <a href="mailto:vermatushar4577@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         </div>
@@ -132,55 +128,73 @@
         <button class="close-btn" onclick="closeModals()">[ X ]</button>
         <h3>> FULL_STACK_ARCHITECTURE</h3>
         <div class="item-card"><h4>Modern Application Stack</h4><p>Experienced in .NET APIs, Python backends, and React.</p></div>
-        <h1>TUSHAR VERMA</h1>
-        <p>MASTER OF CYBERSECURITY // SECURE SYSTEM AUTHORIZED</p>
         <div class="item-card"><h4>Secure Coding Practices</h4><p>Commanded secure code reviews during deployments at KPMG.</p></div>
     </div>
-        <div class="contact-links">
-
     <div class="modal" id="awsModal">
         <button class="close-btn" onclick="closeModals()">[ X ]</button>
         <h3>> CLOUD_INFRASTRUCTURE</h3>
-        <div class="item-card"><h4>AWS Technical Solutions Associate</h4><p>Verified certification for secure architectures on AWS.</p></div>
+        <div class="item-card"><h4>AWS Solutions Architect Associate</h4><p>Verified certification for secure architectures on AWS.</p></div>
         <div class="item-card"><h4>Google IT Support</h4><p>Verified credential encompassing infrastructure troubleshooting.</p></div>
     </div>
 
     <script>
-        // --- YOUR SECURE MEME DATABASE ---
-        // Add direct image links to your favorite clean IT memes here!
+        // --- SECURE MEME DATABASE (Expanded) ---
         const memeDatabase = [
             "https://i.imgflip.com/1g8my4.jpg", // "One does not simply..."
             "https://i.imgflip.com/4t0m5.jpg",  // "Y U NO code compile"
             "https://i.imgflip.com/1bij.jpg",   // "Aliens / IT Magic"
-            "https://i.imgflip.com/261o3j.jpg", // "Is this a bug?"
-
+            "https://i.imgflip.com/261o3j.jpg", // "Is this a pigeon?"
             "https://i.imgflip.com/39t1bg.jpg", // Batman slapping Robin
-            "https://i.imgflip.com/wxica.jpg"   // "Look at me, I am the admin now"
+            "https://i.imgflip.com/wxica.jpg",  // "Look at me, I am the admin"
+            "https://i.imgflip.com/22bdpt.jpg", // "Password cannot be previous password"
+            "https://i.imgflip.com/1otk96.jpg", // "Hackerman"
+            "https://i.imgflip.com/2cp1.jpg",   // Futurama Fry "Not sure if..."
+            "https://i.imgflip.com/1h7in3.jpg", // Smart guy tapping head
+            "https://i.imgflip.com/4gof7p.jpg", // "Always has been" astronaut
+            "https://i.imgflip.com/9vct.jpg"    // First world problems
         ];
 
-        // Function to rotate memes
+        // The "Deck of Cards" Logic
+        let currentCardIndex = 0;
+
+        // Function to shuffle the array (Fisher-Yates algorithm)
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
         function rotateMemes() {
+            // If we run out of memes in our deck, reshuffle a new deck!
+            if (shuffledDeck.length === 0 || currentCardIndex + 4 > shuffledDeck.length) {
+                shuffledDeck = shuffle([...memeDatabase]);
+                currentCardIndex = 0;
+            }
+
             const screens = ['meme1', 'meme2', 'meme3', 'meme4'];
             
-            screens.forEach(screenId => {
+            screens.forEach((screenId, i) => {
                 const imgElement = document.getElementById(screenId);
-                
-                // Fade out
-                imgElement.style.opacity = 0;
+                imgElement.style.opacity = 0; // Fade out
                 
                 setTimeout(() => {
-                    // Pick a random meme
-                    const randomMeme = memeDatabase[Math.floor(Math.random() * memeDatabase.length)];
-                    imgElement.src = randomMeme;
-                    
-                    // Fade in
-                    imgElement.style.opacity = 1;
-                }, 500); // Wait for fade out to finish before swapping
+                    // Deal the next unique card from the deck
+                    imgElement.src = shuffledDeck[currentCardIndex + i];
+                    imgElement.style.opacity = 1; // Fade in
+                }, 500);
             });
+
+            // Move the index forward by 4 for the next rotation
+            currentCardIndex += 4;
         }
 
         // Run immediately, then every 6 seconds
         rotateMemes();
+
         setInterval(rotateMemes, 6000);
 
         // --- Modal Logic ---
@@ -195,3 +209,4 @@
     </script>
 </body>
 </html>
+
