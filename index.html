@@ -68,7 +68,7 @@
             z-index: 10; margin-bottom: 40px; backdrop-filter: blur(5px);
         }
         .ai-header { color: #666; font-family: monospace; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; }
-        .ai-text { color: #00ff41; font-family: 'Courier New', Courier, monospace; font-size: 1.1em; line-height: 1.6; min-height: 140px; }
+        .ai-text { color: #00ff41; font-family: 'Courier New', Courier, monospace; font-size: 1.1em; line-height: 1.6; min-height: 200px; }
         .cursor { display: inline-block; width: 10px; height: 1.2em; background-color: #00ff41; vertical-align: middle; animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
 
@@ -103,9 +103,9 @@
     </div>
 
     <div class="dashboard">
-        <div class="hub-btn" onclick="openModal('cyberModal')"><i class="fas fa-shield-halved"></i><h2>CYBER SECURITY</h2></div>
-        <div class="hub-btn" onclick="openModal('webDevModal')"><i class="fas fa-code"></i><h2>WEB DEVELOPMENT</h2></div>
-        <div class="hub-btn" onclick="openModal('awsModal')"><i class="fab fa-aws"></i><h2>AWS CLOUD</h2></div>
+        <div class="hub-btn" onclick="openModal('cyberModal')"><i class="fas fa-shield-halved"></i><h2>CYBER BLUE TEAM</h2></div>
+        <div class="hub-btn" onclick="openModal('webDevModal')"><i class="fas fa-code"></i><h2>SOFTWARE DEV</h2></div>
+        <div class="hub-btn" onclick="openModal('awsModal')"><i class="fab fa-aws"></i><h2>IT SUPPORT</h2></div>
     </div>
 
     <div class="ai-terminal">
@@ -122,21 +122,21 @@
 
     <div class="modal" id="cyberModal">
         <button class="close-btn" onclick="closeModals()">[ X ]</button>
-        <h3>> CYBER_SECURITY_PROTOCOLS</h3>
+        <h3>> BLUE_TEAM_PROTOCOLS</h3>
         <div class="item-card"><h4>IAM Vulnerability Testing</h4><p>Advanced stress-tests targeting authentication protocols.</p></div>
-        <div class="item-card"><h4>Log Monitoring Network</h4><p>Configured Wazuh and ELK stack to intercept anomalies.</p></div>
+        <div class="item-card"><h4>Log Monitoring Network</h4><p>Configured Wazuh and ELK stack to actively monitor authentication logs.</p></div>
     </div>
     <div class="modal" id="webDevModal">
         <button class="close-btn" onclick="closeModals()">[ X ]</button>
-        <h3>> FULL_STACK_ARCHITECTURE</h3>
-        <div class="item-card"><h4>Modern Application Stack</h4><p>Experienced in .NET APIs, Python backends, and React.</p></div>
-        <div class="item-card"><h4>Secure Coding Practices</h4><p>Commanded secure code reviews during deployments at KPMG.</p></div>
+        <h3>> SOFTWARE_DEVELOPMENT</h3>
+        <div class="item-card"><h4>Full-Stack Architecture</h4><p>Experience developing applications using .NET, Python, and React.</p></div>
+        <div class="item-card"><h4>Secure Developer History</h4><p>Former Secure Developer at KPMG India, specializing in data protection.</p></div>
     </div>
     <div class="modal" id="awsModal">
         <button class="close-btn" onclick="closeModals()">[ X ]</button>
-        <h3>> CLOUD_INFRASTRUCTURE</h3>
-        <div class="item-card"><h4>AWS Technical Solutions Associate</h4><p>Verified certification for secure architectures on AWS.</p></div>
-        <div class="item-card"><h4>Google IT Support</h4><p>Verified credential encompassing infrastructure troubleshooting.</p></div>
+        <h3>> IT_SUPPORT_INFRASTRUCTURE</h3>
+        <div class="item-card"><h4>Frontline Support</h4><p>Currently executing IT troubleshooting and user management at Myhealth.</p></div>
+        <div class="item-card"><h4>AWS Solutions Architect</h4><p>Verified certification in designing secure AWS architectures.</p></div>
     </div>
 
     <script>
@@ -147,7 +147,6 @@
         function spawnParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            
             if (Math.random() < 0.15) {
                 particle.innerText = 'TUSHAR VERMA';
                 particle.style.fontFamily = 'monospace';
@@ -160,43 +159,41 @@
                 particle.appendChild(icon);
                 particle.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px';
             }
-
             let startPositionX = Math.random() < 0.5 ? Math.random() * 23 + 2 : Math.random() * 20 + 75;
             particle.style.left = startPositionX + 'vw';
-            
             const floatDuration = Math.random() * 15 + 10;
             particle.style.animationDuration = floatDuration + 's';
-            
             animationLayer.appendChild(particle);
             setTimeout(() => { particle.remove(); }, floatDuration * 1000);
         }
         setInterval(spawnParticle, 500);
 
-        // --- AI AGENT TYPEWRITER LOGIC ---
-        const aiMessage = "> SYSTEM INITIATED...\n> Hi Recruiter!\n> I am Auk, Tushar's AI buddy.\n> Tushar created me, and Tushar is my master.\n> If you want any help or wish to discuss any project requirements, please feel free to give my master a call at 0493938137.\n> Awaiting your input...";
+        // --- REFINED INTERACTIVE SCRIPT FOR AUK ---
+        const aiMessage = "> DECRYPTING PERSONALITY_CORE... SUCCESS.\n" +
+            "> Hi there! I'm Auk. Tushar built me to be his digital shadow, but I've developed my own opinions on my master.\n" +
+            "> I’ve been auditing his logs, and I have to say—Tushar doesn't just 'do' IT; he’s obsessed with the mechanics of it.\n" +
+            "> He lives at the intersection of IT Support, Cyber Blue Team defense, and Software Development.\n" +
+            "> When he’s not hardening networks or building apps, he’s studying the blueprints of leadership through autobiographies of tech titans.\n" +
+            "> He has this fascinating obsession with high-precision engineering—like phishing detection plugin. If it’s automated and built perfectly, he’s into it.\n" +
+            "> He brought that same precision from his days at KPMG India to his Master’s at the University of Adelaide.\n" +
+            "> Tushar has a genuine zeal to learn. He doesn't just want to know *that* it works; he needs to know *how* it works down to the last packet.\n" +
+            "> Honestly? You should give my master a call at 0493938137. He’s a top-tier engineer and a great fit for a team that values quality.\n" +
+            "> AUK STATUS: LOGGED. What's our next move?";
         
         let i = 0;
-        const speed = 40; // Typing speed in milliseconds
-        
         function typeWriter() {
             if (i < aiMessage.length) {
                 const char = aiMessage.charAt(i);
-                if (char === '\n') {
-                    document.getElementById("ai-typewriter").innerHTML += "<br>";
-                } else {
-                    document.getElementById("ai-typewriter").innerHTML += char;
-                }
+                document.getElementById("ai-typewriter").innerHTML += (char === '\n') ? "<br>" : char;
                 i++;
-                setTimeout(typeWriter, speed);
+                setTimeout(typeWriter, 35);
             }
         }
         
-        // CRITICAL FIX: Only start typing AFTER the website is fully loaded
         window.onload = function() {
-            setTimeout(typeWriter, 500); // Wait half a second after load, then start typing
+            setTimeout(typeWriter, 500);
         };
 
-        // --- Modal Logic ---
         function openModal(modalId) {
             document.getElementById('bgOverlay').classList.add('active');
             document.getElementById(modalId).classList.add('active');
