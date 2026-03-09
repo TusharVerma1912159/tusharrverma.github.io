@@ -1,20 +1,53 @@
-title: Tushar Verma | Cybersecurity
-email: vermatushar4577@gmail.com
-description: Master of Cybersecurity Graduate from University of Adelaide.
-remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: "dark" # Gives that "Cybersecurity" dark-mode feel
+# --- SITE SETTINGS ---
+title: "Tushar Verma | Cybersecurity Portfolio"
+description: "Master of Cybersecurity Graduate from University of Adelaide. Specialized in Network Security and Cloud Infrastructure."
+url: "https://tusharverma1912159.github.io"
+baseurl: "" # Leave this empty
 
-# Creative Sidebar Settings
+# --- THEME SETTINGS (CREATIVE & PROFESSIONAL) ---
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: "dark" # "dark" provides a sleek, cybersecurity-focused look.
+
+# --- PLUGINS (REQUIRED TO FIX YOUR ERROR) ---
+# Adding 'jekyll-include-cache' fixes the 'Unknown tag include_cached' error.
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# --- AUTHOR SIDEBAR ---
 author:
   name   : "Tushar Verma"
-  avatar : "https://github.com/identicons/tushar.png" # Placeholder photo
-  bio    : "Cybersecurity Professional & Secure Developer"
+  avatar : "https://github.com/identicons/tushar.png" # You can replace this with your photo URL later.
+  bio    : "Cybersecurity Professional & Secure Developer."
   location: "Melbourne, Australia"
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://linkedin.com/in/tusharr-verma0001"
+      url: "https://linkedin.com/in/tushar-verma0001"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:vermatushar4577@gmail.com"
 
-# Plugin to make the theme work
-plugins:
-  - jekyll-remote-theme
+# --- BUILD SETTINGS ---
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: ""
+incremental: false
+
+# --- DEFAULTS FOR PAGES ---
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
