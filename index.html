@@ -30,19 +30,12 @@
 
         /* --- AMBIENT PARTICLE ENGINE --- */
         #animation-layer {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; /* Keeps it behind your main content */
-            overflow: hidden;
-            pointer-events: none; /* Ensures you can still click buttons */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden; pointer-events: none;
         }
         .particle {
-            position: absolute;
-            bottom: -50px;
-            color: rgba(0, 243, 255, 0.15); /* Faint neon cyan */
-            animation: floatUp linear forwards;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
-            white-space: nowrap;
+            position: absolute; bottom: -50px; color: rgba(0, 243, 255, 0.15);
+            animation: floatUp linear forwards; text-shadow: 0 0 10px rgba(0, 243, 255, 0.2); white-space: nowrap;
         }
         @keyframes floatUp {
             0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
@@ -55,18 +48,56 @@
         .header { text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 2px; z-index: 10; }
         .header h1 { font-weight: 300; font-size: 3em; color: var(--neon-cyan); margin-bottom: 5px; }
         .header p { color: #aaa; font-family: monospace; font-size: 1.1em; margin-bottom: 20px; }
-        
         .contact-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
         .contact-links a { color: var(--neon-cyan); text-decoration: none; font-family: monospace; font-size: 1.1em; border: 1px solid var(--neon-cyan); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease; background: rgba(0, 0, 0, 0.5); }
         .contact-links a:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 15px var(--neon-cyan); }
 
         /* --- PORTFOLIO GRID --- */
         .section-title { color: #fff; font-family: monospace; font-size: 1.5em; border-bottom: 2px dashed var(--neon-cyan); padding-bottom: 10px; margin-bottom: 40px; text-align: center; width: 80%; max-width: 800px; z-index: 10; }
-        .dashboard { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; width: 100%; max-width: 1000px; z-index: 10; }
+        .dashboard { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; width: 100%; max-width: 1000px; z-index: 10; margin-bottom: 50px; }
         .hub-btn { background: var(--panel-bg); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); width: 280px; backdrop-filter: blur(5px); }
         .hub-btn:hover { background: rgba(0, 243, 255, 0.15); box-shadow: 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.2); transform: translateY(-5px); }
         .hub-btn i { font-size: 50px; color: var(--neon-cyan); margin-bottom: 20px; text-shadow: 0 0 15px var(--neon-cyan); }
         .hub-btn h2 { color: #fff; font-weight: 400; letter-spacing: 2px; font-size: 1.2em; }
+
+        /* --- AI AGENT TERMINAL --- */
+        .ai-terminal {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.1), 0 0 20px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            margin-bottom: 40px;
+            backdrop-filter: blur(5px);
+        }
+        .ai-header {
+            color: #666;
+            font-family: monospace;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .ai-text {
+            color: #00ff41; /* Classic hacker green */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1em;
+            line-height: 1.6;
+            min-height: 120px; /* Prevents box jumping while typing */
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: #00ff41;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
 
         /* --- MODALS --- */
         .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 700px; background: #0d1117; border: 2px solid var(--neon-cyan); box-shadow: 0 0 50px rgba(0, 243, 255, 0.2); padding: 40px; border-radius: 10px; z-index: 100; }
@@ -95,13 +126,23 @@
     </div>
 
     <div class="section-title">
-        <i class="fas fa-folder-tree"></i> >PORTFOLIO
+        <i class="fas fa-folder-tree"></i> > CYBER_PORTFOLIO_MODULES
     </div>
 
     <div class="dashboard">
         <div class="hub-btn" onclick="openModal('cyberModal')"><i class="fas fa-shield-halved"></i><h2>CYBER SECURITY</h2></div>
         <div class="hub-btn" onclick="openModal('webDevModal')"><i class="fas fa-code"></i><h2>WEB DEVELOPMENT</h2></div>
         <div class="hub-btn" onclick="openModal('awsModal')"><i class="fab fa-aws"></i><h2>AWS CLOUD</h2></div>
+    </div>
+
+    <div class="ai-terminal">
+        <div class="ai-header">
+            <span><i class="fas fa-robot"></i> AI_AGENT_LOG</span>
+            <span>STATUS: ONLINE</span>
+        </div>
+        <div class="ai-text">
+            <span id="ai-typewriter"></span><span class="cursor"></span>
+        </div>
     </div>
 
     <div class="overlay" id="bgOverlay" onclick="closeModals()"></div>
@@ -113,6 +154,7 @@
         <div class="item-card"><h4>Log Monitoring Network</h4><p>Configured Wazuh and ELK stack to intercept anomalies.</p></div>
     </div>
     <div class="modal" id="webDevModal">
+        <button class="close-btn" onclick="closeModals()">[ X ]</button>
         <h3>> FULL_STACK_ARCHITECTURE</h3>
         <div class="item-card"><h4>Modern Application Stack</h4><p>Experienced in .NET APIs, Python backends, and React.</p></div>
         <div class="item-card"><h4>Secure Coding Practices</h4><p>Commanded secure code reviews during deployments at KPMG.</p></div>
@@ -127,60 +169,51 @@
     <script>
         // --- JAVASCRIPT PARTICLE ENGINE ---
         const animationLayer = document.getElementById('animation-layer');
-        
-        // The icons that will float in the background
-        const itSymbols = [
-            'fa-shield-halved', 'fa-code', 'fa-server', 'fa-bug', 
-            'fa-terminal', 'fa-network-wired', 'fa-database', 
-            'fa-laptop-code', 'fa-microchip', 'fa-lock', 'fa-wifi'
-        ];
+        const itSymbols = ['fa-shield-halved', 'fa-code', 'fa-server', 'fa-bug', 'fa-terminal', 'fa-network-wired', 'fa-database', 'fa-laptop-code', 'fa-microchip', 'fa-lock', 'fa-wifi'];
 
         function spawnParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle';
             
-            // 15% chance to spawn your name, 85% chance to spawn an IT icon
             if (Math.random() < 0.15) {
                 particle.innerText = 'TUSHAR VERMA';
                 particle.style.fontFamily = 'monospace';
                 particle.style.fontWeight = 'bold';
                 particle.style.fontSize = Math.floor(Math.random() * 10 + 12) + 'px';
-
             } else {
                 const icon = document.createElement('i');
                 const randomIcon = itSymbols[Math.floor(Math.random() * itSymbols.length)];
                 icon.className = 'fas ' + randomIcon;
                 particle.appendChild(icon);
-                particle.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px'; // Random size
+                particle.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px';
             }
 
-            // CRITICAL: Keep the center clear!
-            // Randomly pick the left side (2% to 25% width) OR right side (75% to 95% width)
-            let startPositionX;
-            if (Math.random() < 0.5) {
-
-                startPositionX = Math.random() * 23 + 2; // Left
-            } else {
-                startPositionX = Math.random() * 20 + 75; // Right
-            }
+            let startPositionX = Math.random() < 0.5 ? Math.random() * 23 + 2 : Math.random() * 20 + 75;
             particle.style.left = startPositionX + 'vw';
             
-            // Randomize how fast they float up (between 10 and 25 seconds)
             const floatDuration = Math.random() * 15 + 10;
             particle.style.animationDuration = floatDuration + 's';
-
             
             animationLayer.appendChild(particle);
-            
-            // Delete the HTML element after it leaves the top of the screen to prevent lag
-            setTimeout(() => {
-
-                particle.remove();
-            }, floatDuration * 1000);
+            setTimeout(() => { particle.remove(); }, floatDuration * 1000);
         }
-
-        // Run the engine: Spawn a new floating element every 500 milliseconds infinitely
         setInterval(spawnParticle, 500);
+
+        let i = 0;
+        const speed = 40; // Typing speed in milliseconds
+        
+        function typeWriter() {
+            if (i < aiMessage.length) {
+                // Handle new lines correctly in HTML
+                const char = aiMessage.charAt(i);
+                document.getElementById("ai-typewriter").innerHTML += (char === '\n') ? '<br>' : char;
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        // Start typing 1 second after the page loads
+        setTimeout(typeWriter, 1000);
 
         // --- Modal Logic ---
         function openModal(modalId) {
