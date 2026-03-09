@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tushar Verma | Secure System</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            font-size: 16px;
+        }
+        #terminal-output {
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+        .prompt {
+            margin-right: 10px;
+            color: #00ff41;
+            font-weight: bold;
+        }
+        input {
+            background: transparent;
+            color: #00ff41;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            outline: none;
+            width: 80%;
+        }
+        a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+        .highlight { color: #ffffff; }
+    </style>
+</head>
+<body>
+    <div id="terminal-output">SECURE CONNECTION ESTABLISHED...
+Welcome to the interactive portfolio of Tushar Verma.
+Type <span class="highlight">'help'</span> to see available commands.</div>
+    
+    <div class="input-line">
+        <span class="prompt">guest@tushar-sys:~$</span>
+        <input type="text" id="cmd-input" autocomplete="off" autofocus>
+    </div>
+
+    <script>
+        const output = document.getElementById('terminal-output');
+        const input = document.getElementById('cmd-input');
+
+        // Keep the input focused so the user can always type
+        document.addEventListener('click', () => input.focus());
+
+                if (cmd === 'help') {
+                    output.innerHTML += "Available commands:\n  <span class="highlight">about</span>      - View clearance and status\n  <span class="highlight">skills</span>     - View certifications and education\n  <span class="highlight">experience</span> - View professional history\n  <span class="highlight">projects</span>   - View security deployments\n  <span class="highlight">contact</span>    - Initialize communication\n  <span class="highlight">clear</span>      - Clear terminal screen";
+                } else if (cmd === 'about') {
+                    output.innerHTML += "> STATUS: Master of Cybersecurity Graduate\n> LOCATION: Melbourne, VIC\n> CLEARANCE: Full Working Rights (485 Visa)";
+                } else if (cmd === 'skills') {
+                    output.innerHTML += "> DEGREES:\n  - Master of Cybersecurity (University of Adelaide)\n  - Bachelor of Technology\n\n> CERTIFICATIONS:\n  - AWS Technical Solutions Associate\n  - Google IT Support";
+                } else if (cmd === 'experience') {
+                    output.innerHTML += "> SERVICE DESK IT SUPPORT @ Myhealth Medical Centre\n  Executing user account management and frontline IT troubleshooting.\n\n> SECURE DEVELOPER @ KPMG India\n  Deployed secure Appian solutions and commanded code reviews.";
+                } else if (cmd === 'projects') {
+                    output.innerHTML += "> SIEM & LOG MONITORING NETWORK\n  Configured Wazuh and ELK stack to intercept anomalies.\n\n> IAM VULNERABILITY PROTOCOL\n  Conducted stress-tests targeting authentication protocols.";
+                } else if (cmd === 'contact') {
+                    output.innerHTML += "> <a href='https://linkedin.com/in/tushar-verma0001' target='_blank'>CONNECT ON LINKEDIN</a>\n> <a href='mailto:vermatushar4577@gmail.com'>SEND SECURE EMAIL</a>";
+                } else if (cmd === 'clear') {
+                    output.innerHTML = "SECURE CONNECTION ESTABLISHED...\nWelcome to the interactive portfolio of Tushar Verma.\nType <span class="highlight">'help'</span> to see available commands.";
+                } else if (cmd !== '') {
+                    output.innerHTML += `Command not recognized: ${cmd}. Type 'help' for available commands.`;
+                }
+                
+                // Clear the input field and scroll to the bottom
+                input.value = '';
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        });
+    </script>
+</body>
+</html>        input.addEventListener('keypress', function(e) {
+                
+                // Logic for the interactive commands
+            if (e.key === 'Enter') {
+                // Echo the command the user just typed
+                output.innerHTML += `\n<br><span class="highlight">guest@tushar-sys:~$ ${cmd}</span>\n<br>`;
+
