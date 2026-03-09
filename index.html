@@ -28,37 +28,28 @@
             background-size: 30px 30px;
         }
 
-        /* --- ROTATING MEME SCREENS --- */
-        .meme-screen {
+        /* --- AMBIENT PARTICLE ENGINE --- */
+        #animation-layer {
             position: fixed;
-            z-index: -1;
-            width: 150px;
-            height: 150px;
-            border: 1px solid var(--neon-cyan);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; /* Keeps it behind your main content */
             overflow: hidden;
-            opacity: 0.6;
-            transition: opacity 1s ease-in-out;
-            background: #000;
+            pointer-events: none; /* Ensures you can still click buttons */
         }
-        .meme-screen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
+        .particle {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(0, 243, 255, 0.15); /* Faint neon cyan */
+            animation: floatUp linear forwards;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            white-space: nowrap;
         }
-        
-        .top-left { top: 5%; left: 3%; animation: float 5s ease-in-out infinite; }
-        .top-right { top: 5%; right: 3%; animation: float-slow 6s ease-in-out infinite; }
-        .bottom-left { bottom: 5%; left: 3%; animation: float-slow 7s ease-in-out infinite; }
-        .bottom-right { bottom: 5%; right: 3%; animation: float 4s ease-in-out infinite; }
-
-        @media (max-width: 800px) { .meme-screen { display: none; } }
-
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(3deg); } }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; transform: translateY(-10vh) rotate(10deg) scale(1); }
+            90% { opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(180deg) scale(1.2); opacity: 0; }
+        }
 
         /* --- HEADER & CONTACT --- */
         .header { text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 2px; z-index: 10; }
@@ -92,10 +83,7 @@
 </head>
 <body>
 
-    <div class="meme-screen top-left"><img id="meme1" src="" alt="IT Meme"></div>
-    <div class="meme-screen top-right"><img id="meme2" src="" alt="IT Meme"></div>
-    <div class="meme-screen bottom-left"><img id="meme3" src="" alt="IT Meme"></div>
-    <div class="meme-screen bottom-right"><img id="meme4" src="" alt="IT Meme"></div>
+    <div id="animation-layer"></div>
 
     <div class="header">
         <h1>TUSHAR VERMA</h1>
@@ -125,7 +113,6 @@
         <div class="item-card"><h4>Log Monitoring Network</h4><p>Configured Wazuh and ELK stack to intercept anomalies.</p></div>
     </div>
     <div class="modal" id="webDevModal">
-        <button class="close-btn" onclick="closeModals()">[ X ]</button>
         <h3>> FULL_STACK_ARCHITECTURE</h3>
         <div class="item-card"><h4>Modern Application Stack</h4><p>Experienced in .NET APIs, Python backends, and React.</p></div>
         <div class="item-card"><h4>Secure Coding Practices</h4><p>Commanded secure code reviews during deployments at KPMG.</p></div>
@@ -133,69 +120,67 @@
     <div class="modal" id="awsModal">
         <button class="close-btn" onclick="closeModals()">[ X ]</button>
         <h3>> CLOUD_INFRASTRUCTURE</h3>
-        <div class="item-card"><h4>AWS Solutions Architect Associate</h4><p>Verified certification for secure architectures on AWS.</p></div>
+        <div class="item-card"><h4>AWS Technical Solutions Associate</h4><p>Verified certification for secure architectures on AWS.</p></div>
         <div class="item-card"><h4>Google IT Support</h4><p>Verified credential encompassing infrastructure troubleshooting.</p></div>
     </div>
 
     <script>
-        // --- SECURE MEME DATABASE (Expanded) ---
-        const memeDatabase = [
-            "https://i.imgflip.com/1g8my4.jpg", // "One does not simply..."
-            "https://i.imgflip.com/4t0m5.jpg",  // "Y U NO code compile"
-            "https://i.imgflip.com/1bij.jpg",   // "Aliens / IT Magic"
-            "https://i.imgflip.com/261o3j.jpg", // "Is this a pigeon?"
-            "https://i.imgflip.com/39t1bg.jpg", // Batman slapping Robin
-            "https://i.imgflip.com/wxica.jpg",  // "Look at me, I am the admin"
-            "https://i.imgflip.com/22bdpt.jpg", // "Password cannot be previous password"
-            "https://i.imgflip.com/1otk96.jpg", // "Hackerman"
-            "https://i.imgflip.com/2cp1.jpg",   // Futurama Fry "Not sure if..."
-            "https://i.imgflip.com/1h7in3.jpg", // Smart guy tapping head
-            "https://i.imgflip.com/4gof7p.jpg", // "Always has been" astronaut
-            "https://i.imgflip.com/9vct.jpg"    // First world problems
+        // --- JAVASCRIPT PARTICLE ENGINE ---
+        const animationLayer = document.getElementById('animation-layer');
+        
+        // The icons that will float in the background
+        const itSymbols = [
+            'fa-shield-halved', 'fa-code', 'fa-server', 'fa-bug', 
+            'fa-terminal', 'fa-network-wired', 'fa-database', 
+            'fa-laptop-code', 'fa-microchip', 'fa-lock', 'fa-wifi'
         ];
 
-        // The "Deck of Cards" Logic
-        let currentCardIndex = 0;
-
-        // Function to shuffle the array (Fisher-Yates algorithm)
-        function shuffle(array) {
-            let currentIndex = array.length, randomIndex;
-            while (currentIndex != 0) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-            }
-            return array;
-        }
-
-        function rotateMemes() {
-            // If we run out of memes in our deck, reshuffle a new deck!
-            if (shuffledDeck.length === 0 || currentCardIndex + 4 > shuffledDeck.length) {
-                shuffledDeck = shuffle([...memeDatabase]);
-                currentCardIndex = 0;
-            }
-
-            const screens = ['meme1', 'meme2', 'meme3', 'meme4'];
+        function spawnParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
             
-            screens.forEach((screenId, i) => {
-                const imgElement = document.getElementById(screenId);
-                imgElement.style.opacity = 0; // Fade out
-                
-                setTimeout(() => {
-                    // Deal the next unique card from the deck
-                    imgElement.src = shuffledDeck[currentCardIndex + i];
-                    imgElement.style.opacity = 1; // Fade in
-                }, 500);
-            });
+            // 15% chance to spawn your name, 85% chance to spawn an IT icon
+            if (Math.random() < 0.15) {
+                particle.innerText = 'TUSHAR VERMA';
+                particle.style.fontFamily = 'monospace';
+                particle.style.fontWeight = 'bold';
+                particle.style.fontSize = Math.floor(Math.random() * 10 + 12) + 'px';
 
-            // Move the index forward by 4 for the next rotation
-            currentCardIndex += 4;
+            } else {
+                const icon = document.createElement('i');
+                const randomIcon = itSymbols[Math.floor(Math.random() * itSymbols.length)];
+                icon.className = 'fas ' + randomIcon;
+                particle.appendChild(icon);
+                particle.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px'; // Random size
+            }
+
+            // CRITICAL: Keep the center clear!
+            // Randomly pick the left side (2% to 25% width) OR right side (75% to 95% width)
+            let startPositionX;
+            if (Math.random() < 0.5) {
+
+                startPositionX = Math.random() * 23 + 2; // Left
+            } else {
+                startPositionX = Math.random() * 20 + 75; // Right
+            }
+            particle.style.left = startPositionX + 'vw';
+            
+            // Randomize how fast they float up (between 10 and 25 seconds)
+            const floatDuration = Math.random() * 15 + 10;
+            particle.style.animationDuration = floatDuration + 's';
+
+            
+            animationLayer.appendChild(particle);
+            
+            // Delete the HTML element after it leaves the top of the screen to prevent lag
+            setTimeout(() => {
+
+                particle.remove();
+            }, floatDuration * 1000);
         }
 
-        // Run immediately, then every 6 seconds
-        rotateMemes();
-
-        setInterval(rotateMemes, 6000);
+        // Run the engine: Spawn a new floating element every 500 milliseconds infinitely
+        setInterval(spawnParticle, 500);
 
         // --- Modal Logic ---
         function openModal(modalId) {
@@ -209,4 +194,3 @@
     </script>
 </body>
 </html>
-
