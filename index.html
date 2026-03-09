@@ -62,41 +62,14 @@
 
         /* --- AI AGENT TERMINAL --- */
         .ai-terminal {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 8px;
-            padding: 20px;
+            width: 100%; max-width: 800px; background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--neon-cyan); border-radius: 8px; padding: 20px;
             box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.1), 0 0 20px rgba(0, 0, 0, 0.8);
-            z-index: 10;
-            margin-bottom: 40px;
-            backdrop-filter: blur(5px);
+            z-index: 10; margin-bottom: 40px; backdrop-filter: blur(5px);
         }
-        .ai-header {
-            color: #666;
-            font-family: monospace;
-            border-bottom: 1px solid #333;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .ai-text {
-            color: #00ff41; /* Classic hacker green */
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.1em;
-            line-height: 1.6;
-            min-height: 120px; /* Prevents box jumping while typing */
-        }
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 1.2em;
-            background-color: #00ff41;
-            vertical-align: middle;
-            animation: blink 1s step-end infinite;
-        }
+        .ai-header { color: #666; font-family: monospace; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; }
+        .ai-text { color: #00ff41; font-family: 'Courier New', Courier, monospace; font-size: 1.1em; line-height: 1.6; min-height: 140px; }
+        .cursor { display: inline-block; width: 10px; height: 1.2em; background-color: #00ff41; vertical-align: middle; animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
 
         /* --- MODALS --- */
@@ -137,7 +110,7 @@
 
     <div class="ai-terminal">
         <div class="ai-header">
-            <span><i class="fas fa-robot"></i> AI_AGENT_LOG</span>
+            <span><i class="fas fa-robot"></i> AI_AGENT: AUK</span>
             <span>STATUS: ONLINE</span>
         </div>
         <div class="ai-text">
@@ -199,21 +172,29 @@
         }
         setInterval(spawnParticle, 500);
 
+        // --- AI AGENT TYPEWRITER LOGIC ---
+        const aiMessage = "> SYSTEM INITIATED...\n> Hi Recruiter!\n> I am Auk, Tushar's AI buddy.\n> Tushar created me, and Tushar is my master.\n> If you want any help or wish to discuss any project requirements, please feel free to give my master a call at 0493938137.\n> Awaiting your input...";
+        
         let i = 0;
         const speed = 40; // Typing speed in milliseconds
         
         function typeWriter() {
             if (i < aiMessage.length) {
-                // Handle new lines correctly in HTML
                 const char = aiMessage.charAt(i);
-                document.getElementById("ai-typewriter").innerHTML += (char === '\n') ? '<br>' : char;
+                if (char === '\n') {
+                    document.getElementById("ai-typewriter").innerHTML += "<br>";
+                } else {
+                    document.getElementById("ai-typewriter").innerHTML += char;
+                }
                 i++;
                 setTimeout(typeWriter, speed);
             }
         }
         
-        // Start typing 1 second after the page loads
-        setTimeout(typeWriter, 1000);
+        // CRITICAL FIX: Only start typing AFTER the website is fully loaded
+        window.onload = function() {
+            setTimeout(typeWriter, 500); // Wait half a second after load, then start typing
+        };
 
         // --- Modal Logic ---
         function openModal(modalId) {
