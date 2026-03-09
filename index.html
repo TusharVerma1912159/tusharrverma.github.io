@@ -28,12 +28,37 @@
             background-size: 30px 30px;
         }
 
-        /* Header & Contact Info */
+        /* --- BACKGROUND CARTOON ANIMATIONS --- */
+        .cartoon { position: fixed; z-index: -1; opacity: 0.7; }
+        
+        /* Top Left: Robot chasing a Bug */
+        .robot { top: 10%; left: 5%; font-size: 50px; color: var(--neon-cyan); animation: float 4s ease-in-out infinite; }
+        .bug { top: 12%; left: 10%; font-size: 30px; color: #ff003c; animation: panic 2s infinite; }
+        
+        /* Top Right: Sneaky Hacker Ninja */
+        .ninja { top: 10%; right: 5%; font-size: 60px; color: #a100ff; animation: peek 5s infinite; }
+        
+        /* Bottom Left: Stressed Server on Fire */
+        .server { bottom: 10%; left: 5%; font-size: 60px; color: #00ff41; animation: shake 3s infinite; }
+        .fire { bottom: 10%; left: 8%; font-size: 40px; color: #ff7300; position: fixed; animation: flicker 0.5s infinite; }
+        
+        /* Bottom Right: Floating Cyber Ghost */
+        .ghost { bottom: 10%; right: 5%; font-size: 55px; color: rgba(255, 255, 255, 0.8); animation: float-slow 6s ease-in-out infinite; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(10deg); } }
+        @keyframes panic { 0%, 100% { transform: translateX(0) scale(1); } 50% { transform: translateX(15px) scale(1.2); } }
+        @keyframes peek { 0%, 100% { transform: translateX(50px); opacity: 0; } 50% { transform: translateX(0); opacity: 1; } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); } 20%, 40%, 60%, 80% { transform: translateX(2px); } }
+        @keyframes flicker { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.1); } }
+
+        /* --- HEADER & CONTACT --- */
         .header {
             text-align: center;
             margin-bottom: 40px;
             text-shadow: 0 0 10px var(--neon-cyan);
             letter-spacing: 2px;
+            z-index: 10;
         }
         .header h1 { font-weight: 300; font-size: 3em; color: var(--neon-cyan); margin-bottom: 5px; }
         .header p { color: #aaa; font-family: monospace; font-size: 1.1em; margin-bottom: 20px; }
@@ -53,6 +78,7 @@
             padding: 8px 15px;
             border-radius: 5px;
             transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
         }
         .contact-links a:hover {
             background: var(--neon-cyan);
@@ -60,7 +86,7 @@
             box-shadow: 0 0 15px var(--neon-cyan);
         }
 
-        /* Portfolio Section */
+        /* --- PORTFOLIO SECTION --- */
         .section-title {
             color: #fff;
             font-family: monospace;
@@ -71,15 +97,22 @@
             text-align: center;
             width: 80%;
             max-width: 800px;
+            z-index: 10;
+        }
+        .section-title i {
+            color: var(--neon-cyan);
+            margin-right: 10px;
         }
 
-        /* The Interactive Grid */
+        /* The Interactive Grid (3 Blocks Centered) */
         .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 30px;
             width: 100%;
             max-width: 1000px;
+            z-index: 10;
         }
         .hub-btn {
             background: var(--panel-bg);
@@ -90,6 +123,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05);
+            width: 280px;
+            backdrop-filter: blur(5px);
         }
         .hub-btn:hover {
             background: rgba(0, 243, 255, 0.15);
@@ -104,13 +139,20 @@
         }
         .hub-btn h2 { color: #fff; font-weight: 400; letter-spacing: 2px; font-size: 1.2em; }
 
-        /* Pop-up Modals */
+        /* --- MODALS --- */
         .modal {
             display: none;
             position: fixed;
             top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 90%; max-width: 700px;
             background: #0d1117;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.2);
+            padding: 40px; border-radius: 10px; z-index: 100;
+        }
+        .modal.active { display: block; }
+        .close-btn {
+            position: absolute; top: 15px; right: 20px;
             color: var(--neon-cyan); font-size: 24px;
             cursor: pointer; background: none; border: none;
         }
@@ -129,6 +171,13 @@
 </head>
 <body>
 
+    <div class="cartoon robot"><i class="fas fa-robot"></i></div>
+    <div class="cartoon bug"><i class="fas fa-bug"></i></div>
+    <div class="cartoon ninja"><i class="fas fa-user-ninja"></i></div>
+    <div class="cartoon server"><i class="fas fa-server"></i></div>
+    <div class="cartoon fire"><i class="fas fa-fire"></i></div>
+    <div class="cartoon ghost"><i class="fas fa-ghost"></i></div>
+
     <div class="header">
         <h1>TUSHAR VERMA</h1>
         <p>MASTER OF CYBERSECURITY // SECURE SYSTEM AUTHORIZED</p>
@@ -139,10 +188,11 @@
     </div>
 
     <div class="section-title">
-        > CYBER_PORTFOLIO_MODULES
+        <i class="fas fa-folder-tree"></i> > CYBER_PORTFOLIO_MODULES
     </div>
 
     <div class="dashboard">
+        
         <div class="hub-btn" onclick="openModal('cyberModal')">
             <i class="fas fa-shield-halved"></i>
             <h2>CYBER SECURITY</h2>
@@ -158,11 +208,59 @@
             <h2>AWS CLOUD</h2>
         </div>
 
-        <div class="hub-btn" onclick="openModal('projectsModal')">
-            <i class="fas fa-network-wired            border: 2px solid var(--neon-cyan);
-        .close-btn {
-            position: absolute; top: 15px; right: 20px;
-            box-shadow: 0 0 50px rgba(0, 243, 255, 0.2);
-            padding: 40px; border-radius: 10px; z-index: 100;
-        .modal.active { display: block; }
+    </div>
 
+    <div class="overlay" id="bgOverlay" onclick="closeModals()"></div>
+
+    <div class="modal" id="cyberModal">
+        <button class="close-btn" onclick="closeModals()">[ X ]</button>
+        <h3>> CYBER_SECURITY_PROTOCOLS</h3>
+        <div class="item-card">
+            <h4>IAM Vulnerability Testing</h4>
+            <p>Advanced stress-tests and vulnerability assessments targeting authentication protocols and credential management.</p>
+        </div>
+        <div class="item-card">
+            <h4>Log Monitoring Network</h4>
+            <p>Configured Wazuh and ELK stack to actively monitor authentication logs and intercept anomalies.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="webDevModal">
+        <button class="close-btn" onclick="closeModals()">[ X ]</button>
+        <h3>> FULL_STACK_ARCHITECTURE</h3>
+        <div class="item-card">
+            <h4>Modern Application Stack</h4>
+            <p>Experienced in developing scalable applications utilizing .NET APIs, Python backends, and React interactive front-ends.</p>
+        </div>
+        <div class="item-card">
+            <h4>Secure Coding Practices</h4>
+            <p>Implemented strict data protection and commanded secure code reviews during deployments at KPMG.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="awsModal">
+        <button class="close-btn" onclick="closeModals()">[ X ]</button>
+        <h3>> CLOUD_INFRASTRUCTURE</h3>
+        <div class="item-card">
+            <h4>AWS Technical Solutions Associate</h4>
+            <p>Verified certification demonstrating proficiency in designing and deploying secure, robust architectures on Amazon Web Services.</p>
+        </div>
+        <div class="item-card">
+            <h4>Google IT Support</h4>
+            <p>Verified credential encompassing networking protocols, system administration, and infrastructure troubleshooting.</p>
+        </div>
+    <script>
+        // Modal Logic
+        function openModal(modalId) {
+            document.getElementById('bgOverlay').classList.add('active');
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModals() {
+            document.getElementById('bgOverlay').classList.remove('active');
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => modal.classList.remove('active'));
+        }
+    </script>
+</body>
+</html>
