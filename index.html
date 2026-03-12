@@ -30,11 +30,11 @@
 
         .ai-terminal { width: 100%; max-width: 800px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--neon-cyan); border-radius: 8px; padding: 20px; box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.1), 0 0 20px rgba(0, 0, 0, 0.8); z-index: 10; margin-bottom: 40px; backdrop-filter: blur(5px); }
         .ai-header { color: #666; font-family: monospace; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; }
-        .ai-text { color: #00ff41; font-family: 'Courier New', Courier, monospace; font-size: 1.1em; line-height: 1.6; min-height: 200px; }
+        .ai-text { color: #00ff41; font-family: 'Courier New', Courier, monospace; font-size: 1.1em; line-height: 1.6; min-height: 220px; }
         .cursor { display: inline-block; width: 10px; height: 1.2em; background-color: #00ff41; vertical-align: middle; animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Modals for remaining modules */
+        /* Modals */
         .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 700px; background: #0d1117; border: 2px solid var(--neon-cyan); box-shadow: 0 0 50px rgba(0, 243, 255, 0.2); padding: 40px; border-radius: 10px; z-index: 100; }
         .modal.active { display: block; }
         .close-btn { position: absolute; top: 15px; right: 20px; color: var(--neon-cyan); font-size: 24px; cursor: pointer; background: none; border: none; }
@@ -99,6 +99,7 @@
     </div>
 
     <script>
+        // --- JAVASCRIPT PARTICLE ENGINE ---
         const animationLayer = document.getElementById('animation-layer');
         const itSymbols = ['fa-shield-halved', 'fa-code', 'fa-server', 'fa-bug', 'fa-terminal', 'fa-network-wired', 'fa-database', 'fa-laptop-code', 'fa-microchip', 'fa-lock', 'fa-wifi'];
 
@@ -111,7 +112,6 @@
                 particle.style.fontWeight = 'bold';
                 particle.style.fontSize = Math.floor(Math.random() * 10 + 12) + 'px';
             } else {
-                const icon = document.createElement('i');
                 const randomIcon = itSymbols[Math.floor(Math.random() * itSymbols.length)];
                 icon.className = 'fas ' + randomIcon;
                 particle.appendChild(icon);
@@ -126,31 +126,43 @@
         }
         setInterval(spawnParticle, 500);
 
-        const aiMessage = "> DECRYPTING PERSONALITY_CORE... SUCCESS.\n" +
-            "> Hi there! I'm Auk, Tushar's digital buddy. I've been auditing his logs, and here is what you need to know:\n" +
-            "> Tushar lives at the intersection of IT Support, Cyber Blue Team defense, and Software Development.\n" +
-            "> He doesn't just 'do' work—he is obsessed with high-precision results and operational excellence.\n" +
-            "> If a system isn't running perfectly, he's the guy who stays up until it is, ensuring every detail is polished.\n" +
-            "> When he’s not hardening networks, he’s studying the mindset of innovation through the autobiographies of tech leaders.\n" +
-            "> He brought that same drive from his time at KPMG India to his Master’s at the University of Adelaide.\n" +
-            "> Tushar has a genuine zeal to learn and won't stop until he understands the internal mechanics of a solution.\n" +
-            "> Honestly? Try giving my master a call at 0493938137. He won’t disappoint you, and he'll be a great fit for your company!\n" +
-            "> AUK STATUS: END OF LOG. Awaiting your signal...";
+        // --- FIXED AUK SCRIPT (4 Casual Lines) ---
+        const aiMessage = "> Hey! I'm Auk, the digital sidekick Tushar built to handle his introductions.\n" +
+            "> He's a cybersecurity grad who absolutely geeks out over defending networks and building cool cloud software.\n" +
+            "> When he isn't deep in code or studying tech leaders, he's probably obsessing over perfectly automated engineering.\n" +
+            "> Give him a ring at 0493938137—he’s an awesome guy and a total workhorse for any team!";
         
         let i = 0;
+        const terminal = document.getElementById("ai-typewriter");
+        terminal.innerHTML = ""; // Clears the terminal before typing starts
+        
         function typeWriter() {
             if (i < aiMessage.length) {
                 const char = aiMessage.charAt(i);
-                document.getElementById("ai-typewriter").innerHTML += (char === '\n') ? "<br>" : char;
+                // Adds a double break for new lines to keep the 4 lines visually separated
+                terminal.innerHTML += (char === '\n') ? "<br><br>" : char;
                 i++;
                 setTimeout(typeWriter, 35);
+            }
         }
         
-        window.onload = function() { setTimeout(typeWriter, 500); };
+        // CRITICAL FIX: Ensures the HTML is fully loaded before the script fires
+        window.addEventListener('load', () => {
 
+            setTimeout(typeWriter, 800);
+        });
 
-        function openModal(modalId) { document.getElementById('bgOverlay').classList.add('active'); document.getElementById(modalId).classList.add('active'); }
-        function closeModals() { document.getElementById('bgOverlay').classList.remove('active'); document.querySelectorAll('.modal').forEach(m => m.classList.remove('active')); }
+        // --- MODAL LOGIC ---
+        function openModal(modalId) {
+            document.getElementById('bgOverlay').classList.add('active');
+            document.getElementById(modalId).classList.add('active');
+
+        }
+        function closeModals() {
+            document.getElementById('bgOverlay').classList.remove('active');
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+
+        }
     </script>
 </body>
 </html>
