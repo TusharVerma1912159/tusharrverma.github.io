@@ -10,20 +10,20 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--dark-bg); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; padding: 50px 20px; min-height: 100vh; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 30px 30px; }
         
-        #animation-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
+        /* FIXED: Moved z-index to 1 */
+        #animation-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; overflow: hidden; pointer-events: none; }
         .particle { position: absolute; bottom: -50px; color: rgba(0, 243, 255, 0.15); animation: floatUp linear forwards; text-shadow: 0 0 10px rgba(0, 243, 255, 0.2); white-space: nowrap; }
         @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; } 10% { opacity: 1; transform: translateY(-10vh) rotate(10deg) scale(1); } 90% { opacity: 1; } 100% { transform: translateY(-110vh) rotate(180deg) scale(1.2); opacity: 0; } }
 
-        .header { text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 2px; z-index: 10; width: 100%; }
+        /* FIXED: Added position: relative and z-index: 10 to all main elements */
+        .header { position: relative; text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 2px; z-index: 10; width: 100%; }
         .header h1 { font-weight: 300; font-size: 2.5em; color: var(--neon-cyan); margin-bottom: 5px; }
         .header p { color: #aaa; font-family: monospace; font-size: 1em; margin-bottom: 20px; }
 
-        /* BACK TO HOME BUTTON */
-        .back-btn { display: inline-block; color: #fff; text-decoration: none; font-family: monospace; font-size: 1.1em; border: 1px dashed var(--neon-cyan); padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; background: rgba(0, 0, 0, 0.5); margin-bottom: 40px; z-index: 10; }
+        .back-btn { position: relative; display: inline-block; color: #fff; text-decoration: none; font-family: monospace; font-size: 1.1em; border: 1px dashed var(--neon-cyan); padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; background: rgba(0, 0, 0, 0.5); margin-bottom: 40px; z-index: 10; }
         .back-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 15px var(--neon-cyan); }
 
-        /* BRICK LAYOUT SYSTEM */
-        .brick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; z-index: 10; margin-bottom: 50px; }
+        .brick-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; z-index: 10; margin-bottom: 50px; }
         .brick { background: rgba(0, 243, 255, 0.02); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 8px; padding: 30px; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); border-left: 4px solid var(--neon-cyan); display: flex; flex-direction: column; }
         .brick:hover { background: rgba(0, 243, 255, 0.08); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 243, 255, 0.1); border-left: 4px solid #fff; }
         
@@ -31,7 +31,6 @@
         .brick .tag { display: inline-block; background: rgba(0, 243, 255, 0.1); color: var(--neon-cyan); font-size: 0.75em; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--neon-cyan); margin-bottom: 15px; font-family: monospace; align-self: flex-start; }
         .brick p { color: #ddd; line-height: 1.6; font-size: 0.95em; margin-bottom: 20px; flex-grow: 1; }
         
-        /* GITHUB PROJECT LINK BUTTON */
         .github-link { display: inline-block; color: #fff; text-decoration: none; font-family: monospace; font-size: 0.9em; border: 1px solid #fff; padding: 8px 15px; border-radius: 4px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.05); text-align: center; margin-bottom: 20px; }
         .github-link:hover { background: #fff; color: #000; box-shadow: 0 0 10px #fff; }
 
@@ -53,11 +52,6 @@
         
         <div class="brick">
             <h3><i class="fas fa-user-shield"></i> IDENTITY & ACCESS (IAM)</h3>
-            <span class="tag">ASSIGNMENT</span>
-            <p><strong>IAM Vulnerability Protocol:</strong> Conducted advanced stress-tests and vulnerability assessments targeting authentication protocols to identify weaknesses and prevent credential stuffing attacks.</p>
-            <a href="https://github.com/TusharVerma1912159" target="_blank" class="github-link"><i class="fab fa-github"></i> View Repository</a>
-            <div class="footer">LOCATION: University of Adelaide Research Lab</div>
-        </div>
 
         <div class="brick">
             <h3><i class="fas fa-eye"></i> LOG MONITORING (SIEM)</h3>
@@ -85,7 +79,6 @@
     </div>
 
     <script>
-        // Ambient Particle Engine
         const animationLayer = document.getElementById('animation-layer');
         const itSymbols = ['fa-shield-halved', 'fa-code', 'fa-server', 'fa-bug', 'fa-terminal', 'fa-network-wired', 'fa-database', 'fa-laptop-code', 'fa-microchip', 'fa-lock', 'fa-wifi'];
 
@@ -93,22 +86,27 @@
             const particle = document.createElement('div');
             particle.className = 'particle';
             if (Math.random() < 0.15) {
+
                 particle.innerText = 'TUSHAR VERMA';
+
                 particle.style.fontFamily = 'monospace';
                 particle.style.fontWeight = 'bold';
                 particle.style.fontSize = Math.floor(Math.random() * 10 + 12) + 'px';
+
             } else {
                 const icon = document.createElement('i');
                 const randomIcon = itSymbols[Math.floor(Math.random() * itSymbols.length)];
+
                 icon.className = 'fas ' + randomIcon;
                 particle.appendChild(icon);
                 particle.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px';
+
+            }
             let startPositionX = Math.random() < 0.5 ? Math.random() * 23 + 2 : Math.random() * 20 + 75;
             particle.style.left = startPositionX + 'vw';
             const floatDuration = Math.random() * 15 + 10;
             particle.style.animationDuration = floatDuration + 's';
             animationLayer.appendChild(particle);
-
             setTimeout(() => { particle.remove(); }, floatDuration * 1000);
         }
         setInterval(spawnParticle, 500);
