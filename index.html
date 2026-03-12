@@ -10,28 +10,25 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--dark-bg); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; margin: 0; padding: 0; min-height: 100vh; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 30px 30px; }
         
-        /* 1. FIXED ANIMATION LAYER: Safely placed between background and content */
-        #animation-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; overflow: hidden; pointer-events: none; }
+        /* FIXED: Animation Layer Stacking */
+        #animation-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
         .particle { position: absolute; top: 105vh; color: rgba(0, 243, 255, 0.2); animation: floatUp linear forwards; text-shadow: 0 0 10px rgba(0, 243, 255, 0.3); white-space: nowrap; }
-        @keyframes floatUp { 
-            0% { top: 105vh; transform: scale(0.8) rotate(0deg); opacity: 0; } 
-            10% { opacity: 1; transform: scale(1) rotate(10deg); } 
-            90% { opacity: 1; } 
-            100% { top: -10vh; transform: scale(1.2) rotate(180deg); opacity: 0; } 
-        }
+        @keyframes floatUp { 0% { top: 105vh; transform: scale(0.8) rotate(0deg); opacity: 0; } 10% { opacity: 1; transform: scale(1) rotate(10deg); } 90% { opacity: 1; } 100% { top: -10vh; transform: scale(1.2) rotate(180deg); opacity: 0; } }
 
-        /* 2. MASTER CONTENT WRAPPER: Forces all text/buttons to stay on top */
+        /* Master Content Wrapper */
         #main-content { position: relative; z-index: 10; width: 100%; display: flex; flex-direction: column; align-items: center; padding: 50px 20px; }
 
         .header { text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 2px; }
         .header h1 { font-weight: 300; font-size: 3em; color: var(--neon-cyan); margin-bottom: 5px; }
         .header p { color: #aaa; font-family: monospace; font-size: 1.1em; margin-bottom: 20px; }
+        
         .contact-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
         .contact-links a { color: var(--neon-cyan); text-decoration: none; font-family: monospace; font-size: 1.1em; border: 1px solid var(--neon-cyan); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease; background: rgba(0, 0, 0, 0.5); }
         .contact-links a:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 15px var(--neon-cyan); }
 
         .section-title { color: #fff; font-family: monospace; font-size: 1.5em; border-bottom: 2px dashed var(--neon-cyan); padding-bottom: 10px; margin-bottom: 40px; text-align: center; width: 80%; max-width: 800px; }
         .dashboard { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; width: 100%; max-width: 1000px; margin-bottom: 50px; }
+        
         .hub-btn { background: var(--panel-bg); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); width: 280px; backdrop-filter: blur(5px); }
         .hub-btn:hover { background: rgba(0, 243, 255, 0.15); box-shadow: 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.2); transform: translateY(-5px); }
         .hub-btn i { font-size: 50px; color: var(--neon-cyan); margin-bottom: 20px; text-shadow: 0 0 15px var(--neon-cyan); }
@@ -107,7 +104,7 @@
     </div>
 
     <script>
-        // --- 1. FIXED PARTICLE ENGINE (Spawns on Corners) ---
+        // --- 1. FIXED PARTICLE ENGINE (Visible on Edges) ---
         const animationLayer = document.getElementById('animation-layer');
         const itSymbols = ['fa-shield-halved', 'fa-code', 'fa-server', 'fa-bug', 'fa-terminal', 'fa-network-wired', 'fa-database', 'fa-laptop-code', 'fa-microchip', 'fa-lock', 'fa-wifi'];
 
@@ -129,8 +126,8 @@
                 particle.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px';
             }
             
-            // MATH FIX: Spawns randomly ONLY on the left 15% or right 15% of the screen
-            let startPositionX = Math.random() < 0.5 ? Math.random() * 15 : 85 + (Math.random() * 15);
+            // MATH FIX: Guaranteed to stay visible on the screen (2% to 15% OR 80% to 95%)
+            let startPositionX = Math.random() < 0.5 ? Math.floor(Math.random() * 13 + 2) : Math.floor(Math.random() * 15 + 80);
             particle.style.left = startPositionX + 'vw';
             
             const floatDuration = Math.random() * 15 + 10;
@@ -144,28 +141,24 @@
         // --- 2. BULLETPROOF AUK SCRIPT ---
         document.addEventListener("DOMContentLoaded", () => {
             const terminal = document.getElementById("ai-typewriter");
-            // Exactly 4 sentences, 1 paragraph, casual tone.
+            // Exactly 1 paragraph, 4 sentences.
             const aiMessage = "> Hey! I'm Auk, the digital sidekick Tushar built to handle his introductions. He's a cybersecurity grad who absolutely geeks out over defending networks and building cool cloud software. When he isn't deep in code or studying tech leaders, he's probably obsessing over perfectly automated engineering. Give him a ring at 0493938137—he’s an awesome guy and a total workhorse for any team!";
             
             let i = 0;
-            terminal.innerHTML = ""; // Clear box safely
+            terminal.textContent = ""; // Pure text rendering stops HTML crashes
             
             function typeWriter() {
                 if (i < aiMessage.length) {
-                    terminal.innerHTML += aiMessage.charAt(i);
+                    terminal.textContent += aiMessage.charAt(i);
+                    i++;
                     setTimeout(typeWriter, 35);
                 }
             }
-            setTimeout(typeWriter, 500); // Waits half a second, then types
-
+            setTimeout(typeWriter, 500); 
         });
-
 
         function openModal(modalId) { document.getElementById('bgOverlay').classList.add('active'); document.getElementById(modalId).classList.add('active'); }
         function closeModals() { document.getElementById('bgOverlay').classList.remove('active'); document.querySelectorAll('.modal').forEach(m => m.classList.remove('active')); }
-
     </script>
-
 </body>
-
 </html>
