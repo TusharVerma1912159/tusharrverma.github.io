@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TUSHARR VERMA | CYBER-HUB</title>
+    <title>TUSHAR VERMA | CYBER-HUB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --neon-cyan: #00f3ff; --dark-bg: #090a0f; --panel-bg: rgba(0, 243, 255, 0.05); }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--dark-bg); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; margin: 0; padding: 0; min-height: 100vh; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 30px 30px; }
         
-        /* FIXED: Animation Layer Stacking */
         #animation-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
         .particle { position: absolute; top: 105vh; color: rgba(0, 243, 255, 0.2); animation: floatUp linear forwards; text-shadow: 0 0 10px rgba(0, 243, 255, 0.3); white-space: nowrap; }
         @keyframes floatUp { 0% { top: 105vh; transform: scale(0.8) rotate(0deg); opacity: 0; } 10% { opacity: 1; transform: scale(1) rotate(10deg); } 90% { opacity: 1; } 100% { top: -10vh; transform: scale(1.2) rotate(180deg); opacity: 0; } }
 
-        /* Master Content Wrapper */
         #main-content { position: relative; z-index: 10; width: 100%; display: flex; flex-direction: column; align-items: center; padding: 50px 20px; }
 
         .header { text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 2px; }
@@ -29,7 +27,7 @@
         .section-title { color: #fff; font-family: monospace; font-size: 1.5em; border-bottom: 2px dashed var(--neon-cyan); padding-bottom: 10px; margin-bottom: 40px; text-align: center; width: 80%; max-width: 800px; }
         .dashboard { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; width: 100%; max-width: 1000px; margin-bottom: 50px; }
         
-        .hub-btn { background: var(--panel-bg); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); width: 280px; backdrop-filter: blur(5px); }
+        .hub-btn { background: var(--panel-bg); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05); width: 280px; backdrop-filter: blur(5px); text-decoration: none; }
         .hub-btn:hover { background: rgba(0, 243, 255, 0.15); box-shadow: 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.2); transform: translateY(-5px); }
         .hub-btn i { font-size: 50px; color: var(--neon-cyan); margin-bottom: 20px; text-shadow: 0 0 15px var(--neon-cyan); }
         .hub-btn h2 { color: #fff; font-weight: 400; letter-spacing: 2px; font-size: 1.2em; }
@@ -39,17 +37,6 @@
         .ai-text { color: #00ff41; font-family: 'Courier New', Courier, monospace; font-size: 1.1em; line-height: 1.6; min-height: 120px; }
         .cursor { display: inline-block; width: 10px; height: 1.2em; background-color: #00ff41; vertical-align: middle; animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-
-        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 700px; background: #0d1117; border: 2px solid var(--neon-cyan); box-shadow: 0 0 50px rgba(0, 243, 255, 0.2); padding: 40px; border-radius: 10px; z-index: 100; }
-        .modal.active { display: block; }
-        .close-btn { position: absolute; top: 15px; right: 20px; color: var(--neon-cyan); font-size: 24px; cursor: pointer; background: none; border: none; }
-        .close-btn:hover { color: #fff; text-shadow: 0 0 10px #fff; }
-        .modal h3 { color: var(--neon-cyan); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
-        .item-card { background: rgba(255,255,255,0.03); border-left: 3px solid var(--neon-cyan); padding: 15px; margin-bottom: 15px; }
-        .item-card h4 { color: #fff; margin-bottom: 5px; }
-        .item-card p { color: #aaa; font-size: 0.9em; line-height: 1.5; }
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 50; }
-        .overlay.active { display: block; }
     </style>
 </head>
 <body>
@@ -58,24 +45,28 @@
 
     <div id="main-content">
         <div class="header">
-            <h1>TUSHARR VERMA</h1>
+            <h1>TUSHAR VERMA</h1>
             <p>MASTER OF CYBERSECURITY // SECURE SYSTEM AUTHORIZED</p>
             <div class="contact-links">
-                <a href="https://linkedin.com/in/tusharr-verma0001" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://linkedin.com/in/tushar-verma0001" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 <a href="mailto:vermatushar4577@gmail.com"><i class="fas fa-envelope"></i> Email</a>
             </div>
         </div>
 
         <div class="section-title">
-            <i class="fas fa-folder-tree"></i> > PORTFOLIO
+            <i class="fas fa-folder-tree"></i> > CYBER_PORTFOLIO_MODULES
         </div>
 
         <div class="dashboard">
-            <div class="hub-btn" onclick="window.location.href='cybersecurity.html'">
+            <a href="cybersecurity.html" class="hub-btn">
                 <i class="fas fa-shield-halved"></i><h2>CYBER SECURITY</h2>
-            </div>
-            <div class="hub-btn" onclick="openModal('webDevModal')"><i class="fas fa-code"></i><h2>SOFTWARE DEV</h2></div>
-            <div class="hub-btn" onclick="openModal('cloudModal')"><i class="fas fa-cloud"></i><h2>CERTIFICATIONS</h2></div>
+            </a>
+            <a href="softwaredev.html" class="hub-btn">
+                <i class="fas fa-code"></i><h2>SOFTWARE DEV</h2>
+            </a>
+            <a href="cloudtech.html" class="hub-btn">
+                <i class="fas fa-cloud"></i><h2>CLOUD TECH</h2>
+            </a>
         </div>
 
         <div class="ai-terminal">
@@ -89,22 +80,7 @@
         </div>
     </div>
 
-    <div class="overlay" id="bgOverlay" onclick="closeModals()"></div>
-    <div class="modal" id="webDevModal">
-        <button class="close-btn" onclick="closeModals()">[ X ]</button>
-        <h3>> SOFTWARE_DEVELOPMENT</h3>
-        <div class="item-card"><h4>Full-Stack Architecture</h4><p>Experience developing applications using .NET, Python, and React.</p></div>
-        <div class="item-card"><h4>Secure Developer History</h4><p>Former Secure Developer at KPMG India, specializing in data protection.</p></div>
-    </div>
-    <div class="modal" id="cloudModal">
-        <button class="close-btn" onclick="closeModals()">[ X ]</button>
-        <h3>> CERTIFICATIONS</h3>
-        <div class="item-card"><h4>AWS Solutions Architect</h4><p>Verified certification demonstrating proficiency in designing secure, robust AWS architectures.</p></div>
-        <div class="item-card"><h4>Infrastructure Administration</h4><p>Proficient in configuring scalable networks and Google IT support operations.</p></div>
-    </div>
-
     <script>
-        // --- 1. FIXED PARTICLE ENGINE (Visible on Edges) ---
         const animationLayer = document.getElementById('animation-layer');
         const itSymbols = ['fa-shield-halved', 'fa-code', 'fa-server', 'fa-bug', 'fa-terminal', 'fa-network-wired', 'fa-database', 'fa-laptop-code', 'fa-microchip', 'fa-lock', 'fa-wifi'];
 
@@ -126,7 +102,6 @@
                 particle.style.fontSize = Math.floor(Math.random() * 25 + 15) + 'px';
             }
             
-            // MATH FIX: Guaranteed to stay visible on the screen (2% to 15% OR 80% to 95%)
             let startPositionX = Math.random() < 0.5 ? Math.floor(Math.random() * 13 + 2) : Math.floor(Math.random() * 15 + 80);
             particle.style.left = startPositionX + 'vw';
             
@@ -138,14 +113,12 @@
         }
         setInterval(spawnParticle, 400);
 
-        // --- 2. BULLETPROOF AUK SCRIPT ---
         document.addEventListener("DOMContentLoaded", () => {
             const terminal = document.getElementById("ai-typewriter");
-            // Exactly 1 paragraph, 4 sentences.
-            const aiMessage = "> Hey! I'm Auk, the digital AI-agent Tushar built to handle his introductions. He's a cybersecurity grad who absolutely geeks out over defending networks and building cool cloud software. When he isn't deep in code or studying tech leaders, he's probably obsessing over perfectly automated engineering. Give him a ring at 0493938137—he’s an awesome guy and a total workhorse for any team!";
+            const aiMessage = "> Hey! I'm Auk, the digital sidekick Tushar built to handle his introductions. He's a cybersecurity grad who absolutely geeks out over defending networks and building cool cloud software. When he isn't deep in code or studying tech leaders, he's probably obsessing over perfectly automated engineering. Give him a ring at 0493938137—he’s an awesome guy and a total workhorse for any team!";
             
             let i = 0;
-            terminal.textContent = ""; // Pure text rendering stops HTML crashes
+            terminal.textContent = ""; 
             
             function typeWriter() {
                 if (i < aiMessage.length) {
@@ -156,9 +129,7 @@
             }
             setTimeout(typeWriter, 500); 
         });
-
-        function openModal(modalId) { document.getElementById('bgOverlay').classList.add('active'); document.getElementById(modalId).classList.add('active'); }
-        function closeModals() { document.getElementById('bgOverlay').classList.remove('active'); document.querySelectorAll('.modal').forEach(m => m.classList.remove('active')); }
     </script>
 </body>
 </html>
+
